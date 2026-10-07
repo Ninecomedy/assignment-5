@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset='utf-8'>
-	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-	<title>Blogger</title>
-	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-	<script src='main.js'></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blogger | Discussion Board</title>
+    <link rel="stylesheet" href="main.css?v=2">
+    <script src="main.js?v=2"></script>
 </head>
 <body>
-	<h1 id="top"></h1>
-	<hr>
-	<div id="topic"></div>
-	<hr>
-	<div id="reply1"></div>
-	<hr>
-	<div id="reply2"></div>
-	<hr>
-	<textarea name="message" id="message"></textarea> 
-	<br/>
-	<button type="button" onclick="postFunction()">Post</button> 
-	<button type="button" onclick="clearFunction()">Clear</button>
-	
+    <main class="container">
+        <header class="page-header">
+            <p class="site-name">BLOGGER</p>
+            <h1 id="top">Welcome to the Forum</h1>
+        </header>
+
+        <section class="discussion" aria-label="Discussion messages">
+            <div class="post-card topic-card">
+                <h2>Topic <span>01</span></h2>
+                <p class="post-text" id="topic">Your first message will appear here.</p>
+            </div>
+            <div class="post-card">
+                <h2>Reply 1 <span>02</span></h2>
+                <p class="post-text" id="reply1">Waiting for the first reply.</p>
+            </div>
+            <div class="post-card">
+                <h2>Reply 2 <span>03</span></h2>
+                <p class="post-text" id="reply2">Waiting for the second reply.</p>
+            </div>
+        </section>
+
+        <section class="message-panel">
+            <h2>Write a message</h2>
+            <label for="message">Start a topic or add a reply below.</label>
+            <textarea name="message" id="message" rows="4" placeholder="Type your message here..."></textarea>
+            <div class="form-bottom">
+                <p id="status" role="status">0 of 3 messages posted</p>
+                <div class="buttons">
+                    <button type="button" id="clear-button">Clear</button>
+                    <button type="button" id="post-button">Post message</button>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

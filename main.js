@@ -1,62 +1,52 @@
-// ========================================================
-// Assignment 5: JavaScript Post and Reply
-// ========================================================
-
 window.onload = setupFunction;
 
-// ตัวแปรนับลำดับการโพสต์
 let postCount = 0;
 
 function setupFunction() {
-
-    // กำหนดหัวข้อของหน้าเว็บ
-    document.getElementById("top").innerHTML = "Welcome to the Forum";
-
+    document.getElementById("post-button").onclick = postFunction;
+    document.getElementById("clear-button").onclick = clearFunction;
 }
 
 function postFunction() {
-
-    // อ่านข้อความจาก textarea
     let message = document.getElementById("message").value;
+    let status = document.getElementById("status");
 
-    // ครั้งที่ 1 -> topic
+    if (message.trim() == "") {
+        status.textContent = "Please write a message first.";
+        document.getElementById("message").focus();
+        return;
+    }
+
+    let target;
+
     if (postCount == 0) {
-        document.getElementById("topic").innerHTML = message;
+        target = document.getElementById("topic");
+    } else if (postCount == 1) {
+        target = document.getElementById("reply1");
+    } else if (postCount == 2) {
+        target = document.getElementById("reply2");
+    } else {
+        status.textContent = "All 3 messages are posted. Press Clear to start again.";
+        return;
     }
 
-    // ครั้งที่ 2 -> reply1
-    else if (postCount == 1) {
-        document.getElementById("reply1").innerHTML = message;
-    }
-
-    // ครั้งที่ 3 -> reply2
-    else if (postCount == 2) {
-        document.getElementById("reply2").innerHTML = message;
-    }
-
-    // เคลียร์ textarea
-    document.getElementById("message").value = "";
-
-    // เพิ่มจำนวนโพสต์
+    target.textContent = message;
+    target.className = "post-text posted";
     postCount++;
-
+    document.getElementById("message").value = "";
+    status.textContent = postCount + " of 3 messages posted";
+    document.getElementById("message").focus();
 }
 
 function clearFunction() {
-
-    // ล้าง topic
-    document.getElementById("topic").innerHTML = "";
-
-    // ล้าง reply1
-    document.getElementById("reply1").innerHTML = "";
-
-    // ล้าง reply2
-    document.getElementById("reply2").innerHTML = "";
-
-    // ล้าง textarea
+    document.getElementById("topic").textContent = "Your first message will appear here.";
+    document.getElementById("reply1").textContent = "Waiting for the first reply.";
+    document.getElementById("reply2").textContent = "Waiting for the second reply.";
+    document.getElementById("topic").className = "post-text";
+    document.getElementById("reply1").className = "post-text";
+    document.getElementById("reply2").className = "post-text";
     document.getElementById("message").value = "";
-
-    // รีเซ็ตจำนวนโพสต์
+    document.getElementById("status").textContent = "0 of 3 messages posted";
     postCount = 0;
-
+    document.getElementById("message").focus();
 }
